@@ -1,0 +1,90 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Categories>
+    <Category ID="Maximus.HealthExplorer.Report.UI.Control.Assembly.Category" Target="Maximus.HealthExplorer.Report.UI.Control.Assembly"
+              Value="Visualization!Microsoft.SystemCenter.Visualization.WpfComponentAssembly" />
+  </Categories>
+  <Presentation>
+    <Folders>
+      
+    </Folders>
+    <ComponentTypes>
+      <ComponentType ID="Maximus.HealthExplorer.Report.ObjectProperties.ComponentType" Accessibility="Internal" Target="mpinstance://System.Library!System.Entity" Lifetime="ManagementPackElement" />
+      <ComponentType ID="Maximus.HealthExplorer.Report.HealthExplorerReport.ComponentType" Accessibility="Internal" Target="mpinstance://System.Library!System.Entity" Lifetime="ManagementPackElement" />
+      <ComponentType ID="Maximus.HealthExplorer.Report.AlertProperty.ComponentType" Accessibility="Internal" Target="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.OperationalDataTypes/AlertType[]" Lifetime="ManagementPackElement" />
+    </ComponentTypes>
+    <ComponentReferences>
+      <ComponentReference ID="Maximus.HealthExplorer.Report.ObjectProperties.ComponentReference" Accessibility="Internal" 
+                          TypeID="Maximus.HealthExplorer.Report.ObjectProperties.ComponentType"
+                          Parent="Visualization!Microsoft.SystemCenter.Visualization.HealthComponentTasks"/>
+      
+      <ComponentReference ID="Maximus.HealthExplorer.Report.HealthExplorerReport.ComponentReference" Accessibility="Internal"
+                          TypeID="Maximus.HealthExplorer.Report.HealthExplorerReport.ComponentType"
+                          Parent="Visualization!Microsoft.SystemCenter.Visualization.HealthComponentTasks"/>
+      
+      <ComponentReference ID="Maximus.HealthExplorer.Report.AlertProperty.ComponentReference" Accessibility="Internal"
+                          TypeID="Maximus.HealthExplorer.Report.AlertProperty.ComponentType"
+                          Parent="Visualization!Microsoft.SystemCenter.Visualization.ComponentTask.Root"/>
+    </ComponentReferences>
+    <ComponentImplementations>
+      <!-- Extended Entity Properties -->
+      <ComponentImplementation ID="Maximus.HealthExplorer.Report.ObjectProperties.ComponentImplementation" Accessibility="Internal"
+                               Target="mpinstance://System.Library!System.Entity"
+                               TypeId="Maximus.HealthExplorer.Report.ObjectProperties.ComponentType" Platform="Wpf">
+        <Unit>
+          <ContractFactory>Maximus.HealthExplorer.UI.Modules.ObjectPropertyTask</ContractFactory>
+          <Property Name="ConnectionSessionTicket" Direction="In">
+            <Reference>$Service/ConnectionSessionTicket$</Reference>
+          </Property>
+          <Property Name="Entity" Direction="In">
+            <Reference>$Target$</Reference>
+          </Property>
+        </Unit>
+      </ComponentImplementation>
+      
+      <!-- Health Explorer Report -->
+      <ComponentImplementation ID="Maximus.HealthExplorer.Report.HealthExplorerReport.ComponentImplementation" Accessibility="Internal"
+                               Target="mpinstance://System.Library!System.Entity"
+                               TypeId="Maximus.HealthExplorer.Report.HealthExplorerReport.ComponentType" Platform="Wpf">
+        <Unit>
+          <ContractFactory>Maximus.HealthExplorer.UI.Modules.HealthExplorerReportTask</ContractFactory>
+          <Property Name="ConnectionSessionTicket" Direction="In">
+            <Reference>$Service/ConnectionSessionTicket$</Reference>
+          </Property>
+          <Property Name="Entity" Direction="In">
+            <Reference>$Target$</Reference>
+          </Property>
+        </Unit>
+      </ComponentImplementation>
+      
+      <!-- Alert Id -->
+      <ComponentImplementation ID="Maximus.HealthExplorer.Report.AlertProperty.ComponentImplementation" Accessibility="Internal" 
+                               TypeId="Maximus.HealthExplorer.Report.AlertProperty.ComponentType" 
+                               Target="xsd://Microsoft.SystemCenter.Visualization.Library!Microsoft.SystemCenter.Visualization.OperationalDataTypes/AlertType[]" Platform="Wpf">
+        <Unit>
+          <ContractFactory>Maximus.HealthExplorer.UI.Modules.AlertPropertyTask</ContractFactory>
+          <Property Name="ConnectionSessionTicket" Direction="In">
+            <Reference>$Service/ConnectionSessionTicket$</Reference>
+          </Property>
+          <Property Name="Alerts" Direction="In">
+            <Reference>$Target$</Reference>
+          </Property>
+        </Unit>
+      </ComponentImplementation>
+    </ComponentImplementations>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Maximus.HealthExplorer.Report.ObjectProperties.ComponentType">
+          <Name>Entity Properties Extended</Name>
+        </DisplayString>
+        <DisplayString ElementID="Maximus.HealthExplorer.Report.HealthExplorerReport.ComponentType">
+          <Name>Health Explorer HTML Report</Name>
+        </DisplayString>
+        <DisplayString ElementID="Maximus.HealthExplorer.Report.AlertProperty.ComponentType">
+          <Name>Alert Properties Extended</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>
