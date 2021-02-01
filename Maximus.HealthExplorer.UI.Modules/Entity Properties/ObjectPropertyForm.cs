@@ -1,4 +1,8 @@
-﻿using Microsoft.EnterpriseManagement.Monitoring;
+﻿using Microsoft.EnterpriseManagement;
+using Microsoft.EnterpriseManagement.Common;
+using Microsoft.EnterpriseManagement.Configuration;
+using Microsoft.EnterpriseManagement.ConsoleFramework;
+using Microsoft.EnterpriseManagement.Monitoring;
 
 using System;
 using System.Collections.Generic;
@@ -30,7 +34,22 @@ namespace Maximus.HealthExplorer.UI.Modules
       set
       {
         entity = value;
-        pgManagedObject.SelectedObject = entity;
+        pgManagedObject.SelectedObject = new MonitoringObjectTypeDescriptor(value);
+      }
+    }
+
+    private ManagementGroup _ManagementGroup = null;
+    protected ManagementGroup ManagementGroup => _ManagementGroup ?? (_ManagementGroup = Entity?.ManagementGroup);
+
+    private void btGetRules_Click(object sender, EventArgs e)
+    {
+      if (ManagementGroup == null) // also checks Entity != null
+        return;
+      IList<ManagementPackRule> allRules = ManagementGroup.Monitoring.GetRules(Entity, QueryCriteria<ManagementPackRuleCriteria>.Empty);
+      using (GridDisplayForm gridDisplayForm = new GridDisplayForm())
+      {
+        gridDisplayForm.DataGridView.DataSource = new BindingSource { DataSource = allRules };
+        gridDisplayForm.ShowDialog();
       }
     }
   }

@@ -1,7 +1,7 @@
 ﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Resources>
     <Assembly ID="Maximus.HealthExplorer.Report.UI.Control.Assembly" HasNullStream="false" Accessibility="Public"
-              QualifiedName="Maximus.HealthExplorer.UI.Modules, Version=1.0.0.3, Culture=neutral, PublicKeyToken=fd5098a6a3259696"
+              QualifiedName="Maximus.HealthExplorer.UI.Modules, Version=1.0.0.7, Culture=neutral, PublicKeyToken=fd5098a6a3259696"
               FileName="Maximus.HealthExplorer.UI.Modules.dll">
     </Assembly>
   </Resources>

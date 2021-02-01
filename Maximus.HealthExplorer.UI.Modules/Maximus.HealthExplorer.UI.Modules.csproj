@@ -78,6 +78,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity Properties\GridDisplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Entity Properties\GridDisplayForm.Designer.cs">
+      <DependentUpon>GridDisplayForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entity Properties\ManagementPackEnumerationDisplayWrapper.cs" />
+    <Compile Include="Entity Properties\MonitoringObjectPropertyDescriptor.cs" />
+    <Compile Include="Entity Properties\MonitoringObjectTypeDescriptor.cs" />
     <Compile Include="Health Explorer\HealthExplorerReportControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -106,6 +115,9 @@
     <None Include="Maximus.snk" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Entity Properties\GridDisplayForm.resx">
+      <DependentUpon>GridDisplayForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Health Explorer\HealthExplorerReportControl.resx">
       <DependentUpon>HealthExplorerReportControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +125,8 @@
       <DependentUpon>ObjectPropertyForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Entity Properties\Adapters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
